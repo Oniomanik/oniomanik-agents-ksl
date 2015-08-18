@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require "oniomanik/agents/ksl"
+require 'thor'
+
+
+module Oniomanik::Agents::Ksl
+  class CLI < Thor
+    desc "search QUERY", "Search for QUERY"
+    def search(query)
+      Oniomanik::Agents::Ksl.search(query).each do |result|
+        puts "#{result['price']}\t\t#{result['title']}"
+      end
+
+    end
+  end
+
+  CLI.start(ARGV)
+end
